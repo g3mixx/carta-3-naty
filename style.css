@@ -1,0 +1,166 @@
+/* --- CONFIGURACIÓN GENERAL --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Indie Flower', cursive;
+    background-color: #fce4ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa al menos toda la altura */
+}
+
+.main-container {
+    width: 100%;
+    max-width: 500px; /* Ancho máximo para PC */
+    padding: 20px;
+    box-sizing: border-box; /* Para que el padding no rompa el ancho */
+}
+
+.oculto {
+    display: none;
+}
+
+/* --- PANTALLA DE INICIO (DONKEY) --- */
+.titulo-inicio {
+    font-family: 'Pacifico', cursive;
+    color: #d81b60;
+    text-align: center;
+    font-size: 2em; /* Tamaño base */
+}
+
+#img-inicio {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+    border: 4px solid white;
+    /* Evita que se ponga azul al tocarlo en celular */
+    -webkit-tap-highlight-color: transparent; 
+}
+
+#img-inicio:active {
+    transform: scale(0.95); /* Efecto de click al tocar */
+}
+
+.instruccion {
+    text-align: center;
+    color: #888;
+    margin-top: 15px;
+    font-size: 1.1em;
+}
+
+/* --- LA CARTA (HOJA DE PAPEL) --- */
+.hoja-carta {
+    background-color: #ffffff;
+    padding: 40px 30px; /* Más espacio vertical */
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    transform: rotate(-1deg);
+    animation: aparecer 1.5s ease-out;
+    margin: 10px 0; /* Margen para que no pegue con los bordes en scroll */
+}
+
+.fecha {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 0.85em;
+    color: #777;
+}
+
+.titulo-love {
+    font-family: 'Pacifico', cursive;
+    color: #f48fb1;
+    font-size: 4em;
+    text-align: center;
+    margin: 25px 0 20px 0;
+    text-shadow: 2px 2px 0px #fce4ec;
+    line-height: 1;
+}
+
+.cuerpo-carta {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #333;
+    text-align: justify; /* Justificado se ve más ordenado en carta */
+}
+
+.saludo {
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: left;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.firma {
+    text-align: right;
+    margin-top: 25px;
+    font-weight: bold;
+    color: #d81b60;
+    font-size: 1.3em;
+}
+
+/* --- DECORACIONES --- */
+.decoracion {
+    position: absolute;
+    font-size: 1.5em;
+    color: #e91e63;
+    opacity: 0.7;
+    pointer-events: none; /* Para que no molesten al tocar texto */
+}
+
+.d1 { top: 15px; left: 15px; transform: rotate(-15deg); }
+.d2 { bottom: 15px; left: 20px; transform: rotate(10deg); color: #f48fb1; }
+.d3 { bottom: 60px; right: 10px; font-size: 1em; }
+.d4 { top: 70px; right: 30px; font-size: 0.8em; color: #f06292; }
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(50px) rotate(0deg); }
+    to { opacity: 1; transform: translateY(0) rotate(-1deg); }
+}
+
+/* =========================================
+   SOPORTE PARA MÓVIL (RESPONSIVE)
+   ========================================= */
+@media (max-width: 600px) {
+    body {
+        /* Permite scroll si la carta es muy larga en pantallas pequeñas */
+        align-items: flex-start; 
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .main-container {
+        padding: 15px; /* Menos margen lateral */
+    }
+
+    .hoja-carta {
+        padding: 25px 20px; /* Aprovechamos más el papel */
+        transform: rotate(0deg); /* Quitamos la rotación en móvil para leer mejor */
+    }
+
+    .titulo-love {
+        font-size: 3em; /* Título un poco más pequeño */
+        margin-top: 20px;
+    }
+
+    .cuerpo-carta {
+        font-size: 1.05em; /* Letra un pelín más chica para que quepa todo */
+        line-height: 1.4;
+    }
+
+    .fecha {
+        font-size: 0.75em;
+        top: 10px;
+        right: 15px;
+    }
+    
+    /* Ajustamos corazones para que no tapen el texto en pantalla chica */
+    .d1 { top: 10px; left: 10px; font-size: 1.2em; }
+    .d4 { right: 10px; top: 50px; }
+}
